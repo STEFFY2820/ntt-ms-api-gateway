@@ -1,0 +1,29 @@
+spring:
+  application:
+    name: ntt-ms-api-gateway
+
+  cloud:
+    gateway:
+      server:
+        webflux:
+          discovery:
+            locator:
+              enabled: true
+              lower-case-service-id: true
+          routes:
+            - id: ntt-ms-customers
+              uri: lb://ntt-ms-customers
+              predicates:
+                - Path=/customers/**
+
+server:
+  port: 8082
+
+eureka:
+  instance:
+    prefer-ip-address: true
+  client:
+    fetch-registry: true
+    register-with-eureka: true
+    service-url:
+      defaultZone: http://localhost:8761/eureka
