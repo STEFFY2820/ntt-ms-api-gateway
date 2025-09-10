@@ -12,6 +12,10 @@ spring:
           uri: lb://ntt-ms-customers
           predicates:
             - Path=/customers/**
+        - id: accounts
+          uri: lb://ntt-ms-accounts
+          predicates:
+            - Path=/accounts/**
 
 server:
   port: 8082
